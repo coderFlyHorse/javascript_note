@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  At first , block-level scope done not exist in javascript 
+        for (var i = 0; i < 10; i++) {
+
+        }
+        // we can find i is global variable
+        console.log(i); //10
+
+        // for(let j=0;j<10;j++){
+
+        // }
+
+        // console.log(j); //j is not undefined
+
+
+        // so j is a block voriable 
+        // let is block-level scope
+
+        // function foo(){
+        //     var m = 0
+        //     let n = 0
+        // console.log(m,n);
+        // }
+        // here {} is a block-level scope , you can use m and n in the foo
+
+
+
+        // bloclk-level chain is an improtant  .it is like a tree ,js will find a variable from inner to outer 
+
+        function foo() {
+            let m = 0
+            return function innerfoo() {
+
+                console.log(m,i);
+                // here m is 0  i is 10
+            }
+        }
+
+        foo()()
+
+
+
+
+    </script>
+</body>
+
+</html>
