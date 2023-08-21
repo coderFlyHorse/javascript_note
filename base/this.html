@@ -1,15 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
+        // Declarative Environment Record including var、const、let、class、module、function、catch
+        // Declarative Environment Record   有两个子类  Function Environment Record 和 Module Environment Record
+        // Object Environment Record includiing with
+        // Global Environment Record 浏览器中指 globalThis，Node.js 中指 global
+
+        // 设 env 等于当前的 Environment Record
+
+        // 设 exist 等于 env.HasThisBinding() 返回值； （初始化）
+
+        // 如果 exist 为 true，则返回 env.GetThisBinding()，终止； （获取当前的函数 this）
+
+        // Declarative Environment Record 的 HasThisBinding() 始终返回 false，因此像下面这样的代码，this 其实指向的上一层 Environment Record，即 globalThis 对象：
+
+        // {
+        //     console.log(this);  // 输出 globalThis
+        // }
+
+        // ECMAScript 规定，如果函数是箭头函数（=>），那么HasThisBinding() 返回 false，否则返回 true。
+        // 剪头函数都this指向上级函数的this
+
+        // function say() {
+
+
+
+        //     let hello = () => {
+        //         console.log(this);
+        //     }
+        //     hello()
+        // }
+        // say()  // globalThis
+
+        let obj = {
+            func: say
+        }
+
+        function say() {
+
+            let word = 'Shit This'
+            console.log(this);
+
+            console.log(word);
+
+            function person() {
+                console.log(this);  // window
+            }
+            // let name = () => {
+            //     console.log(this); // {func: ƒ}
+            // }
+
+            return person
+
+
+        }
+
+        obj.func()()   //剪头函数主要解决 this 不能被继承的问题
+
 
 
 
     </script>
 </body>
+
 </html>
