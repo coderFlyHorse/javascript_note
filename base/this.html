@@ -66,8 +66,27 @@
         obj.func()()   //剪头函数主要解决 this 不能被继承的问题
 
 
+        function animalFactory(home) {
+            // Env2
+            return function Animal() {
+                // Env1
+                this.address = home;
+
+                console.log(this);
+            }
+        }
+        // address  全局变成了全局变量
+
+        animalFactory('meme')()
+
+        console.log(address); // 可以访问到
 
 
+        // let const 是基于LexicalEnvironment   TDZ Temperal Dead Zone
+
+        //  var 基于 VariableEnvironment
+
+    
     </script>
 </body>
 
